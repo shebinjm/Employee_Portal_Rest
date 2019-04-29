@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.employee.rest.empmngr.model.Employee;
 import com.employee.rest.empmngr.service.Employeeservice;
 
-@CrossOrigin
+@CrossOrigin("*")
 @RestController
 @RequestMapping(value= "/employee")
 public class Employeecontroller {
