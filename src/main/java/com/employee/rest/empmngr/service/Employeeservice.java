@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
+import com.employee.rest.empmngr.exception.EntityNotFoundException;
 import com.employee.rest.empmngr.model.Employee;
 
 public interface Employeeservice {
@@ -18,14 +19,14 @@ public interface Employeeservice {
 	 * Method to fetch all employees from the db with mongodb repository.
 	 * @return
 	 */
-	public Collection<Employee> getAllEmployees();
+	public Collection<Employee> getAllEmployees()throws EntityNotFoundException;
 
 	/**
 	 * Method to fetch employee by id with mongoDb repository.
 	 * @param id
 	 * @return
 	 */
-	public Optional<Employee> findEmployeeById(int id);
+	public Optional<Employee> findEmployeeById(int id)throws EntityNotFoundException;
 
 	/**
 	 * Method to delete employee by id with mongodb repository.

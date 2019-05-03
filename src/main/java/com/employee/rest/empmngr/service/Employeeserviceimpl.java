@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.employee.rest.empmngr.repositories.EmployeeRepository;
+import com.employee.rest.empmngr.exception.EntityNotFoundException;
 import com.employee.rest.empmngr.model.Employee;
 
 @Service
@@ -28,8 +29,12 @@ public class Employeeserviceimpl implements Employeeservice {
 	}
 
 	@Override
-	public Optional<Employee> findEmployeeById(int id) {
-		return employeeRepository.findById(id);
+	public Optional<Employee> findEmployeeById(int id) throws EntityNotFoundException {
+		Optional<Employee> employee = employeeRepository.findById(id);
+        if (employee.equals(Optional.empty())) {
+            throw new EntityNotFoundException(Employee.class, "id", ""+id);
+        }
+        return employee;
 	}
 
 	@Override

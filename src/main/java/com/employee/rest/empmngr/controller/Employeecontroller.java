@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.employee.rest.empmngr.exception.EntityNotFoundException;
 import com.employee.rest.empmngr.model.Employee;
 import com.employee.rest.empmngr.service.Employeeservice;
 
@@ -47,7 +48,7 @@ public class Employeecontroller {
 	 * @return
 	 */
 	@GetMapping(value= "/getall")
-	public Collection<Employee> getAll() {
+	public Collection<Employee> getAll() throws EntityNotFoundException {
 		logger.debug("Getting all employees.");
 		return employeeService.getAllEmployees();
 	}
@@ -58,7 +59,7 @@ public class Employeecontroller {
 	 * @return
 	 */
 	@GetMapping(value= "/getbyid/{employee-id}")
-	public Optional<Employee> getById(@PathVariable(value= "employee-id") int id) {
+	public Optional<Employee> getById(@PathVariable(value= "employee-id") int id)  throws EntityNotFoundException{
 		logger.debug("Getting employee with employee-id= {}.", id);
 		return employeeService.findEmployeeById(id);
 	}
